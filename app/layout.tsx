@@ -20,10 +20,12 @@ const monoFont = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "AriaDocs - Template",
-  metadataBase: new URL("https://ariadocs.vercel.app/"),
-  description:
-    "This comprehensive documentation template, crafted with Next.js and available as open-source, delivers a sleek and responsive design, tailored to meet all your project documentation requirements.",
+  title: 'APEX Docs - Документация',
+  icons: {
+    icon: '@/public/logo.svg',
+    apple: '@/public/logo.svg',
+    shortcut: '@/public/logo.svg',
+  }
 };
 
 export default function RootLayout({
