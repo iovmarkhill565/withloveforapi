@@ -1,0 +1,110 @@
+---
+title: 🔗 Объявление
+description: В этом разделе вы найдете полную информацию о том, как создать новое объявление в вашей команде.
+# tag: с парсером
+---
+
+## 📌 Пример запроса
+<GreenCode>POST</GreenCode> ``/api/order/generate/lonely``
+
+### Headers
+| Name            | Value                 | Description                                          |
+| --------------- | --------------------- | ---------------------------------------------------- |
+| `Authorization` | `Bearer <token>`      | Ваш токен из раздела: **🧑🏻‍💻 Кабинет › 🧑🏻‍💻 API.**      |
+| `X-Team-Key`    | `<token-team>`        | Токен команды из раздела: **🧑🏻‍💻 Кабинет › 🧑🏻‍💻 API.**  |
+
+### Body
+| Name        | Type       | Example          | Description                                     |
+| ----------- | --------------------- | ---- | ----------------------------------------------- |
+| <BodyField>service</BodyField> | `string`  | `packeta_hu` | Идентификатор сервиса из списка всех сервисов [(посмотреть)](/docs/getting-started/help-center/service-list)      |
+| <BodyField>name</BodyField> | `string`  | `Test order` | Название нового объявления      |
+| <BodyField>price</BodyField> | `number`  | `1000.00` | Стоимость товара      |
+| <BodyField>user</BodyField> | `string`  | `Mihály Tamás` | Имя и фамилия      |
+| <BodyField>address</BodyField> | `string`  | `9146 Budapest` | Адрес      |
+| `photo` | `string`  | `https://example.com/img.png` | Ссылка на изображение товара      |
+| `mailer_id` | `int`  | `1` | Идентификатор майлера из списка доступных команде майлеров [(посмотреть)](/docs/getting-started/help-center/mailers-list)      |
+| `email` | `string`  | `example@example.com` | Электронный адрес на которую будет отправлено письмо (обязательный параметр при указании `mailer_id`)      |
+
+### Response
+
+<Tabs defaultValue="200" className="pt-5 pb-1">
+  <TabsList>
+    <TabsTrigger value="200">200</TabsTrigger>
+    <TabsTrigger value="403_1">403: AUTH_TOKEN</TabsTrigger>
+    <TabsTrigger value="403_2">403: JWT_TOKEN</TabsTrigger>
+    <TabsTrigger value="403_3">403: API_TOKEN</TabsTrigger>
+  </TabsList>
+  <TabsContent value="200">
+    ```json showLineNumbers {5-10}
+    {
+      "success": true,
+      "code": 201,
+      "message": "Order created",
+      "details": {
+        "link": "https://team-domain.com/381868590",
+        "short": {
+          "url": "https://my-domain.com/oPOQq0"
+        }
+      },
+      "path": "/order/generate/lonely"
+    }
+    ```
+  </TabsContent>
+  <TabsContent value="403_1">
+    ```plain showLineNumbers {1}
+Forbidden: Missing Authorization Bearer token
+    ```
+  </TabsContent>
+  <TabsContent value="403_2">
+    ```plain showLineNumbers {1}
+Forbidden: Invalid JWT format
+    ```
+  </TabsContent>
+  <TabsContent value="403_3">
+    ```plain showLineNumbers {1}
+Forbidden: Missing API token
+    ```
+  </TabsContent>
+</Tabs>
+
+## 💡 Пример использования
+
+<Tabs defaultValue="HTTP" className="pt-5 pb-1">
+  <TabsList>
+    <TabsTrigger value="HTTP">HTTP</TabsTrigger>
+    <TabsTrigger value="cURL">cURL</TabsTrigger>
+  </TabsList>
+  <TabsContent value="cURL">
+    ```bash showLineNumbers {3-4}
+    curl --location 'https://traffic.withloveforapi.com/api/order/generate/lonely' \
+    --header 'X-Team-Key: <token-team>' \
+    --header 'Content-Type: application/json' \
+    --header 'Authorization: Bearer <token>' \
+    --data '{
+      "service": "vatera_hu",
+      "name": "Test order",
+      "price": 1000,
+      "user": "last_and_first",
+      "address": "address"
+    }'
+    ```
+  </TabsContent>
+  <TabsContent value="HTTP">
+    ```http showLineNumbers {1}
+    POST /api/order/generate/lonely HTTP/1.1
+    Host: traffic.withloveforapi.com
+    X-Team-Key: <token-team>
+    Content-Type: application/json
+    Authorization: Bearer <token>
+    Content-Length: 137
+
+    {
+      "service": "vatera_hu",
+      "name": "Test order",
+      "price": 1000,
+      "user": "last_and_first",
+      "address": "address"
+    }
+    ```
+  </TabsContent>
+</Tabs>
