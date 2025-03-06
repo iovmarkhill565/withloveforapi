@@ -4,6 +4,8 @@ import { ROUTES } from "@/lib/routes-config";
 import SubLink from "./sublink";
 import { usePathname } from "next/navigation";
 
+//test
+
 export default function DocsMenu({ isSheet = false }) {
   const pathname = usePathname();
   if (!pathname.startsWith("/docs")) return null;
