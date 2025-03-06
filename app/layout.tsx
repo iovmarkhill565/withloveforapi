@@ -5,8 +5,6 @@ import { IBM_Plex_Sans, IBM_Plex_Mono } from "next/font/google";
 import { Footer } from "@/components/footer";
 import "@/styles/globals.css";
 
-import logo from "@/public/logo.svg";
-
 const sansFont = IBM_Plex_Sans({
   subsets: ["latin"],
   variable: "--font-geist-sans",
@@ -23,11 +21,6 @@ const monoFont = IBM_Plex_Mono({
 
 export const metadata: Metadata = {
   title: 'APEX Docs - Документация',
-  icons: {
-    icon: logo,
-    apple: logo,
-    shortcut: logo
-  }
 };
 
 export default function RootLayout({
