@@ -1,5 +1,5 @@
 import { ModeToggle } from "@/components/theme-toggle";
-import { MailIcon, HeartHandshakeIcon } from "lucide-react";
+import { HeartHandshakeIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { buttonVariants } from "./ui/button";
@@ -47,15 +47,6 @@ export function Navbar() {
           {/* <AlgoliaSearch {...algolia_props} /> */}
           <div className="flex items-center justify-between sm:gap-2">
             <div className="flex ml-4 sm:ml-0">
-              <Link
-                href="https://t.me/apexmailerinfo"
-                className={buttonVariants({
-                  variant: "ghost",
-                  size: "icon",
-                })}
-              >
-                <MailIcon className="h-[1.1rem] w-[1.1rem]" />
-              </Link>
               <Link
                 href="https://t.me/apexhelper"
                 className={buttonVariants({
