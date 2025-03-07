@@ -4,6 +4,7 @@ import { Navbar } from "@/components/navbar";
 import { IBM_Plex_Sans, IBM_Plex_Mono } from "next/font/google";
 import { Footer } from "@/components/footer";
 import "@/styles/globals.css";
+import { VideoBackground } from "@/components/background";
 
 const sansFont = IBM_Plex_Sans({
   subsets: ["latin"],
@@ -48,8 +49,9 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Navbar />
-          <main className="sm:container mx-auto w-[90vw] h-auto scroll-smooth">
+          <main className="sm:container mx-auto w-[90vw] h-auto scroll-smooth relative">
             {children}
+            <VideoBackground></VideoBackground>
           </main>
           <Footer />
         </ThemeProvider>
