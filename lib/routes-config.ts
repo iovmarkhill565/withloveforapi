@@ -36,6 +36,20 @@ export const ROUTES: EachRoute[] = [
         ],
       },
       { title: '', href: "/line-4", noLink: true },
+      // {
+      //   title: 'test',
+      //   noLink: true,
+      //   href: "/components",
+      //   items: [
+      //     { title: "Stepper", href: "/stepper" },
+      //     { title: "Tabs", href: "/tabs" },
+      //     { title: "Note", href: "/note" },
+      //     { title: "Code Block", href: "/code-block" },
+      //     { title: "Image & Link", href: "/image-link" },
+      //     { title: "File System", href: "/file-system", tag: "New" },
+      //     { title: "Custom", href: "/custom" },
+      //   ]
+      // },
       {
         title: "🤖 Генерация данных",
         href: "/generator",
@@ -56,14 +70,7 @@ export const ROUTES: EachRoute[] = [
               { title: '🔗 Объявление', href: "/order" },
               { title: '🔗 Объявление', tag: 'с парсером', href: "/parsing-order" },
             ],
-          },
-          // { title: "Stepper", href: "/stepper" },
-          // { title: "Tabs", href: "/tabs" },
-          // { title: "Note", href: "/note" },
-          // { title: "Code Block", href: "/code-block" },
-          // { title: "Image & Link", href: "/image-link" },
-          // { title: "File System", href: "/file-system", tag: "New" },
-          // { title: "Custom", href: "/custom" },
+          }
         ],
       },
       // { title: "Algolia Search", href: "/algolia-search", tag: "New" },
@@ -71,7 +78,7 @@ export const ROUTES: EachRoute[] = [
       // {
       //   title: "Customize",
       //   href: "/customize",
-      // },
+      // }
     ],
   },
 ];
