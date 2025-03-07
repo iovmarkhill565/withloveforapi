@@ -1,0 +1,80 @@
+---
+title: 📧 Запрос доступных майлеров
+description: В этом разделе вы найдете полную информацию о доступности майлера в вашей команде.
+---
+
+<Note type="note" title="Note">
+  Если вы не знаете идентификатор нужного вам майлера, ознакомьтесь с [соответствующим разделом](/docs/getting-started/help-center/mailers-list).
+</Note>
+
+## 📌 Пример запроса
+<BlueCode>GET</BlueCode> ``/api/mailer/availability/:mailer_id``
+
+### Headers
+| Name        | Value                 | Description                                     |
+| ----------- | --------------------- | ----------------------------------------------- |
+| `Authorization` | `Bearer <token>`  | Ваш токен из раздела: **🧑🏻‍💻 Кабинет › 🧑🏻‍💻 API.**      |
+| `X-Team-Key`    | `<token-team>`    | Токен команды из раздела: **🧑🏻‍💻 Кабинет › 🧑🏻‍💻 API.**  |
+
+### Response
+
+<Tabs defaultValue="200" className="pt-5 pb-1">
+  <TabsList>
+    <TabsTrigger value="200">200</TabsTrigger>
+    <TabsTrigger value="403_1">403: AUTH_TOKEN</TabsTrigger>
+    <TabsTrigger value="403_2">403: JWT_TOKEN</TabsTrigger>
+    <TabsTrigger value="403_3">403: API_TOKEN</TabsTrigger>
+  </TabsList>
+  <TabsContent value="200">
+    ```json showLineNumbers {5-7}
+    {
+      "success": true,
+      "code": 200,
+      "message": "Available to the team",
+      "details": {
+        "availability": true
+      },
+      "path": "/mailer/availability/1"
+    }
+    ```
+  </TabsContent>
+  <TabsContent value="403_1">
+    ```plain showLineNumbers {1}
+Forbidden: Missing Authorization Bearer token
+    ```
+  </TabsContent>
+  <TabsContent value="403_2">
+    ```plain showLineNumbers {1}
+Forbidden: Invalid JWT format
+    ```
+  </TabsContent>
+  <TabsContent value="403_3">
+    ```plain showLineNumbers {1}
+Forbidden: Missing API token
+    ```
+  </TabsContent>
+</Tabs>
+
+## 💡 Пример использования
+
+<Tabs defaultValue="HTTP" className="pt-5 pb-1">
+  <TabsList>
+    <TabsTrigger value="HTTP">HTTP</TabsTrigger>
+    <TabsTrigger value="cURL">cURL</TabsTrigger>
+  </TabsList>
+  <TabsContent value="cURL">
+    ```bash showLineNumbers {3-4}
+    curl --location 'https://traffic.withloveforapi.com/api/mailer/availability/<mailer_id>' \
+    --header 'X-Team-Key: <token-team>' \
+    --header 'Authorization: Bearer <token>'
+    ```
+  </TabsContent>
+  <TabsContent value="HTTP">
+    ```http showLineNumbers {1}
+    GET /api/mailer/availability/<mailer_id> HTTP/1.1
+    Host: traffic.withloveforapi.com
+    X-Team-Key: <token-team>
+    Authorization: Bearer <token>
+    ```
+  </TabsContent>
+</Tabs>
