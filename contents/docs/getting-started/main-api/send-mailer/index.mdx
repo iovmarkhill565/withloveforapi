@@ -1,0 +1,101 @@
+---
+title: 📨 Отправка письма
+description: В этом разделе вы найдете всю информацию как отправить письмо по номеру объявления.
+tag: NEW
+---
+
+## 📌 Пример запроса
+<GreenCode>POST</GreenCode> ``/api/mailer/send``
+
+### Headers
+| Name            | Value                 | Description                                          |
+| --------------- | --------------------- | ---------------------------------------------------- |
+| `Authorization` | `Bearer <token>`      | Ваш токен из раздела: **🧑🏻‍💻 Кабинет › 🧑🏻‍💻 API.**      |
+| `X-Team-Key`    | `<token-team>`        | Токен команды из раздела: **🧑🏻‍💻 Кабинет › 🧑🏻‍💻 API.**  |
+
+### Body
+| Name        | Type       | Example          | Description                                     |
+| ----------- | --------------------- | ---- | ----------------------------------------------- |
+| <BodyField>order_id</BodyField> | `string`  | `123456789` | Идентификатор созданного ранее вами объявления.      |
+| <BodyField>mailer_id</BodyField> | `number`  | `1` | Идентификатор майлера из списка всех майлеров. [(посмотреть)](/docs/getting-started/help-center/mailers-list)     |
+| <BodyField>email</BodyField> | `string`  | `apex@example.com` | Адрес электронной почты, на который будет отправлено письмо.      |
+
+### Response
+
+<Tabs defaultValue="200" className="pt-5 pb-1">
+  <TabsList>
+    <TabsTrigger value="200">200</TabsTrigger>
+    <TabsTrigger value="403_1">403: AUTH_TOKEN</TabsTrigger>
+    <TabsTrigger value="403_2">403: JWT_TOKEN</TabsTrigger>
+    <TabsTrigger value="403_3">403: API_TOKEN</TabsTrigger>
+  </TabsList>
+  <TabsContent value="200">
+    ```json showLineNumbers {5-10}
+    {
+      "success": true,
+      "code": 200,
+      "message": "The letter has been sent",
+      "details": {
+        "mailer": {
+          "success": true,
+          "send_response": {}
+        }
+      },
+      "path": "/order/generate/lonely"
+    }
+    ```
+  </TabsContent>
+  <TabsContent value="403_1">
+    ```plain showLineNumbers {1}
+Forbidden: Missing Authorization Bearer token
+    ```
+  </TabsContent>
+  <TabsContent value="403_2">
+    ```plain showLineNumbers {1}
+Forbidden: Invalid JWT format
+    ```
+  </TabsContent>
+  <TabsContent value="403_3">
+    ```plain showLineNumbers {1}
+Forbidden: Missing API token
+    ```
+  </TabsContent>
+</Tabs>
+
+## 💡 Пример использования
+
+<Tabs defaultValue="HTTP" className="pt-5 pb-1">
+  <TabsList>
+    <TabsTrigger value="HTTP">HTTP</TabsTrigger>
+    <TabsTrigger value="cURL">cURL</TabsTrigger>
+  </TabsList>
+  <TabsContent value="cURL">
+    ```bash showLineNumbers {3-4}
+    curl --location 'https://traffic.withloveforapi.com/api/mailer/send' \
+    --header 'X-Team-Key: <token-team>' \
+    --header 'Content-Type: application/json' \
+    --header 'Authorization: Bearer <token>' \
+    --data-raw '{
+      "order_id": "252612990",
+      "mailer_id": 1,
+      "email": "exampe@gmail.com"
+    }'
+    ```
+  </TabsContent>
+  <TabsContent value="HTTP">
+    ```http showLineNumbers {1}
+    POST /api/mailer/send HTTP/1.1
+    Host: traffic.withloveforapi.com
+    X-Team-Key: <token-team>
+    Content-Type: application/json
+    Authorization: Bearer <token>
+    Content-Length: 88
+
+    {
+      "order_id": "252612990",
+      "mailer_id": 1,
+      "email": "exampe@gmail.com"
+    }
+    ```
+  </TabsContent>
+</Tabs>

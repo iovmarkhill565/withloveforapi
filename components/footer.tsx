@@ -40,13 +40,13 @@ export function Footer() {
 export function FooterButtons() {
   return (
     <>
-      <Link
+      {/* <Link
         href="https://t.me/ApexRentBot"
         className={buttonVariants({ variant: "outline", size: "sm" })}
       >
         <TriangleIcon className="h-[0.8rem] w-4 mr-2 text-primary fill-current" />
         Установить бота
-      </Link>
+      </Link> */}
       <Link
         href="https://t.me/apexmailerinfo"
         className={buttonVariants({ variant: "outline", size: "sm" })}

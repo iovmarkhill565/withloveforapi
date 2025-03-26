@@ -31,6 +31,7 @@ export const ROUTES: EachRoute[] = [
         href: "/main-api",
         noLink: true,
         items: [
+          { title: '📨 Отправка письма', href: '/send-mailer', tag: 'NEW' },
           { title: '🌐 Сокращение ссылок', href: "/short-link" },
           { title: '📧 Запрос доступных майлеров', href: "/get-mailers" },
         ],
