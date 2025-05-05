@@ -7,7 +7,6 @@ import Anchor from "./anchor";
 import { SheetLeftbar } from "./leftbar";
 import { page_routes } from "@/lib/routes-config";
 import { SheetClose } from "@/components/ui/sheet";
-// import AlgoliaSearch from "./algolia-search";
 import logo from "@/public/logo.svg";
 
 export const NAVLINKS = [
