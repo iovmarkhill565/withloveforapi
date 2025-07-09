@@ -15,7 +15,7 @@ export const NAVLINKS = [
     href: `/docs${page_routes[0].href}`,
   },
   {
-    title: "v1.0.3",
+    title: "v1.0.6",
     href: "#",
   },
 ];

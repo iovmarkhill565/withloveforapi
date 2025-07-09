@@ -1,11 +1,11 @@
 ---
-title: 📑 PDF файл
-description: В этом разделе вы узнаете всё для генерации PDF файла
-#tag: PRO | 0.00%
+title: 🥢 PayPal
+description: В этом разделе вы узнаете как выключить или включить статус PayPal
+# tag: с парсером
 ---
 
 ## 📌 Пример запроса
-<GreenCode>GET</GreenCode> ``/api/order/generate/pdf``
+<GreenCode>POST</GreenCode> ``/api/order/paypal/status``
 
 ### Headers
 | Name            | Value                 | Description                                          |
@@ -13,11 +13,11 @@ description: В этом разделе вы узнаете всё для ген
 | `Authorization` | `Bearer <token>`      | Ваш токен из раздела: **🧑🏻‍💻 Кабинет › 🧑🏻‍💻 API.**      |
 | `X-Team-Key`    | `<token-team>`        | Токен команды из раздела: **🧑🏻‍💻 Кабинет › 🧑🏻‍💻 API.**  |
 
-### Params
+### Body
 | Name        | Type       | Example          | Description                                     |
 | ----------- | --------------------- | ---- | ----------------------------------------------- |
 | <BodyField>order_id</BodyField> | `string`  | `packeta_hu` | Идентификатор объявления |
-| <BodyField>generator</BodyField> | `number`  | `0` | Идентификатор генератора из списка всех генераторов [(посмотреть)](/docs/getting-started/help-center/generator-list)      |
+| <BodyField>status</BodyField> | `boolean`  | `false` | Статус PayPal для объявления      |
 
 ### Response
 
@@ -32,13 +32,7 @@ description: В этом разделе вы узнаете всё для ген
     ```json showLineNumbers {5-10}
     {
       "success": true,
-      "message": "Successfully generated",
-      "details": {
-        "result_generator": {
-          "generator": "<info_generator>",
-          "result": "<data>"
-        }
-      }
+      "message": "Paypal status updated"
     }
     ```
   </TabsContent>
@@ -61,18 +55,36 @@ Forbidden: Missing API token
 
 ## 💡 Пример использования
 
-<Tabs defaultValue="cURL" className="pt-5 pb-1">
+<Tabs defaultValue="HTTP" className="pt-5 pb-1">
   <TabsList>
     <TabsTrigger value="HTTP">HTTP</TabsTrigger>
     <TabsTrigger value="cURL">cURL</TabsTrigger>
   </TabsList>
   <TabsContent value="cURL">
     ```bash showLineNumbers {3-4}
-    curl --request GET \
-      --url 'https://traffic.withloveforapi.com/api/order/generate/pdf?order_id=<order_id>&generator=<generator>' \
-      --header 'Authorization: Bearer <token>' \
-      --header 'Content-Type: application/json' \
-      --header 'X-Team-Key: <token-team>'
+    curl --location 'https://traffic.withloveforapi.com/api/order/paypal/status' \
+    --header 'X-Team-Key: <token-team>' \
+    --header 'Content-Type: application/json' \
+    --header 'Authorization: Bearer <token>' \
+    --data '{
+      "order_id": "123123123",
+      "status": true
+    }'
+    ```
+  </TabsContent>
+  <TabsContent value="HTTP">
+    ```http showLineNumbers {1}
+    POST /api/order/paypal/status HTTP/1.1
+    Host: traffic.withloveforapi.com
+    X-Team-Key: <token-team>
+    Content-Type: application/json
+    Authorization: Bearer <token>
+    Content-Length: 54
+
+    {
+      "order_id": "123123123",
+      "status": true
+    }
     ```
   </TabsContent>
 </Tabs>

@@ -23,6 +23,7 @@ export const ROUTES: EachRoute[] = [
         items: [
           { title: '✉️ Список майлеров', href: "/mailers-list" },
           { title: '📦 Список сервисов', href: "/service-list" },
+          { title: '💾 Список генераторов', href: "/generator-list" },
         ],
       },
       { title: '', href: "/line-2", noLink: true },
@@ -52,6 +53,14 @@ export const ROUTES: EachRoute[] = [
       //   ]
       // },
       {
+        title: "🔄 Обновления данных",
+        href: "/updater",
+        noLink: true,
+        items: [
+          { title: '🥢 PayPal', href: "/paypal" },
+        ],
+      },
+      {
         title: "🤖 Генерация данных",
         href: "/generator",
         noLink: true,
@@ -59,7 +68,7 @@ export const ROUTES: EachRoute[] = [
           { title: '🔗 Объявление', href: "/order" },
           { title: '🔗 Объявление', tag: 'с парсером', href: "/parsing-order" },
           { title: '', href: "/line-3", noLink: true },
-          { title: '📑 PDF файл', tag: 'PRO | 0.00%', href: "/generate-pdf" },
+          { title: '📑 PDF файл', href: "/generate-pdf" },
           { title: '🖼️ Запрос данных', tag: '0.00%', href: "/request-data" },
           { title: '🔲 Создать чек', tag: '0.00%', href: "/request-check" },
           { title: '', href: "/line-7", noLink: true },
