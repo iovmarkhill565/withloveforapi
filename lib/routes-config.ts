@@ -10,7 +10,7 @@ export type EachRoute = {
 
 export const ROUTES: EachRoute[] = [
   {
-    title: "APEX Rent",
+    title: "🚀 APEX Rent",
     href: "/getting-started",
     noLink: true,
     items: [
@@ -21,6 +21,7 @@ export const ROUTES: EachRoute[] = [
         href: "/help-center",
         noLink: true,
         items: [
+          { title: '📲 Список SMS-майлеров', href: "/senders-list" },
           { title: '✉️ Список майлеров', href: "/mailers-list" },
           { title: '📦 Список сервисов', href: "/service-list" },
           { title: '💾 Список генераторов', href: "/generator-list" },
@@ -32,7 +33,8 @@ export const ROUTES: EachRoute[] = [
         href: "/main-api",
         noLink: true,
         items: [
-          { title: '📨 Отправка письма', href: '/send-mailer', tag: 'NEW' },
+          { title: '📲 Отправка SMS', href: '/send-sms', tag: 'NEW' },
+          { title: '📨 Отправка письма', href: '/send-mailer' },
           { title: '🌐 Сокращение ссылок', href: "/short-link" },
           { title: '📧 Запрос доступных майлеров', href: "/get-mailers" },
         ],

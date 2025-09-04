@@ -1,10 +1,11 @@
 ---
-title: 📨 Отправка письма
-description: В этом разделе вы найдете всю информацию как отправить письмо по номеру объявления.
+title: 📲 Отправка SMS
+description: В этом разделе вы найдете всю информацию как отправить сообщение по номеру телефона.
+tag: NEW
 ---
 
 ## 📌 Пример запроса
-<GreenCode>POST</GreenCode> ``/api/mailer/send``
+<GreenCode>POST</GreenCode> ``/api/sender/sms``
 
 ### Headers
 | Name            | Value                 | Description                                          |
@@ -16,8 +17,9 @@ description: В этом разделе вы найдете всю информ�
 | Name        | Type       | Example          | Description                                     |
 | ----------- | --------------------- | ---- | ----------------------------------------------- |
 | <BodyField>order_id</BodyField> | `string`  | `123456789` | Идентификатор созданного ранее вами объявления.      |
-| <BodyField>mailer_id</BodyField> | `number`  | `1` | Идентификатор майлера из списка всех майлеров. [(посмотреть)](/docs/getting-started/help-center/mailers-list)     |
-| <BodyField>email</BodyField> | `string`  | `apex@example.com` | Адрес электронной почты, на который будет отправлено письмо.      |
+| <BodyField>number</BodyField> | `string`  | `+88822539592` | Номер телефона      |
+| <BodyField>text</BodyField> | `string`  | `Hello World` | Текст сообщения. Вы можете использовать переменную **\{link\}** для вставки ссылки в сообщение      |
+| <BodyField>sender_id</BodyField> | `number`  | `1` | Идентификатор майлера из списка всех SMS-майлеров. [(посмотреть)](/docs/getting-started/help-center/senders-list)     |
 
 ### Response
 
@@ -32,15 +34,10 @@ description: В этом разделе вы найдете всю информ�
     ```json showLineNumbers {5-10}
     {
       "success": true,
-      "code": 200,
-      "message": "The letter has been sent",
+      "message": "SMS sent successfully",
       "details": {
-        "mailer": {
-          "success": true,
-          "send_response": {}
-        }
-      },
-      "path": "/order/generate/lonely"
+        "result_sender": <...>
+      }
     }
     ```
   </TabsContent>
@@ -70,30 +67,32 @@ Forbidden: Missing API token
   </TabsList>
   <TabsContent value="cURL">
     ```bash showLineNumbers {3-4}
-    curl --location 'https://traffic.withloveforapi.com/api/mailer/send' \
+    curl --location 'https://traffic.withloveforapi.com/api/sender/sms' \
     --header 'X-Team-Key: <token-team>' \
     --header 'Content-Type: application/json' \
     --header 'Authorization: Bearer <token>' \
     --data-raw '{
       "order_id": "252612990",
-      "mailer_id": 1,
-      "email": "exampe@gmail.com"
+      "sender_id": 1,
+      "number": "+88822539592",
+      "text": "Hello World > Click: {link}"
     }'
     ```
   </TabsContent>
   <TabsContent value="HTTP">
     ```http showLineNumbers {1}
-    POST /api/mailer/send HTTP/1.1
+    POST /api/sender/sms HTTP/1.1
     Host: traffic.withloveforapi.com
     X-Team-Key: <token-team>
     Content-Type: application/json
     Authorization: Bearer <token>
-    Content-Length: 88
+    Content-Length: 125
 
     {
       "order_id": "252612990",
-      "mailer_id": 1,
-      "email": "exampe@gmail.com"
+      "sender_id": 1,
+      "number": "+88822539592",
+      "text": "Hello World > Click: {link}"
     }
     ```
   </TabsContent>
